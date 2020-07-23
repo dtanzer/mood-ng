@@ -4,13 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+
 @NgModule({
 	declarations: [
 		AppComponent
 	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule
+		AppRoutingModule,
+		EmojiModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
