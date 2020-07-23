@@ -1,12 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { mock, instance, Mock, when, } from 'omnimock';
+
 import { AppComponent } from './app.component';
+import { CurrentMoodService } from './mood/current-mood.service';
 
 describe('AppComponent', () => {
+	let moodService: Mock<CurrentMoodService>;
+	
 	beforeEach(async(() => {
+		moodService = mock<CurrentMoodService>('moodService');
+
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule
+			],
+			providers: [
+				{ provide: CurrentMoodService, useValue: instance(moodService)},
 			],
 			declarations: [
 				AppComponent
@@ -14,22 +24,21 @@ describe('AppComponent', () => {
 		}).compileComponents();
 	}));
 
-	it('should create the app', () => {
+	it('contains a compact mood display for three registered users on the front page', () => {
+		when(moodService.getCurrentMoods()).return([{},{},{}]);
 		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.componentInstance;
-		expect(app).toBeTruthy();
+
+		fixture.detectChanges();
+
+		const compiled = fixture.nativeElement;
+		expect(compiled.querySelectorAll('mood-display-compact').length).toBe(3);
 	});
 
-	it(`should have as title 'mood-ng'`, () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.componentInstance;
-		expect(app.title).toEqual('mood-ng');
-	});
-
-	it('should render title', () => {
+	it('contains a compact mood display for four registered users on the front page', () => {
+		when(moodService.getCurrentMoods()).return([{},{},{},{}]);
 		const fixture = TestBed.createComponent(AppComponent);
 		fixture.detectChanges();
 		const compiled = fixture.nativeElement;
-		expect(compiled.querySelector('.content span').textContent).toContain('mood-ng app is running!');
+		expect(compiled.querySelectorAll('mood-display-compact').length).toBe(4);
 	});
 });

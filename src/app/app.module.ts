@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { DisplayCompactComponent } from './mood/display-compact/display-compact.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		DisplayCompactComponent
 	],
 	imports: [
 		BrowserModule,
