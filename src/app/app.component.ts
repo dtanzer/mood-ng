@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CurrentMoodService, Mood, } from './mood/current-mood.service'
+import { CurrentMoodService, } from './mood/current-mood.service'
+import { MoodData } from './mood/MoodData';
 
 @Component({
 	selector: 'mood-root',
@@ -8,7 +9,7 @@ import { CurrentMoodService, Mood, } from './mood/current-mood.service'
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	public moods: Mood[] = [];
+	public moods: MoodData[] = [];
 	
 	constructor(private currentMoodService: CurrentMoodService) { }
 

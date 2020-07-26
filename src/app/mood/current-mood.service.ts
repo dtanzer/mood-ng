@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export type Mood = {
-
-}
+import { MoodData } from './MoodData';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,7 +9,7 @@ export class CurrentMoodService {
 
 	constructor() { }
 
-	getCurrentMoods(): Mood[] {
+	getCurrentMoods(): MoodData[] {
 		return []
 	}
 }

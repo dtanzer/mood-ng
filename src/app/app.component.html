@@ -1,4 +1,4 @@
 <div>
 	<ngx-emoji emoji=":smile:" size="32"></ngx-emoji>
-	<mood-display-compact *ngFor="mood of moods"></mood-display-compact>
+	<mood-display-compact *ngFor="let mood of moods" [moodData]="mood"></mood-display-compact>
 </div>
