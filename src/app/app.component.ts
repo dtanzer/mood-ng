@@ -9,11 +9,9 @@ import { MoodData } from './mood/MoodData';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	public moods: MoodData[] = [];
 	
-	constructor(private currentMoodService: CurrentMoodService) { }
+	constructor() { }
 
 	ngOnInit() {
-		this.moods = this.currentMoodService.getCurrentMoods();
 	}
 }
