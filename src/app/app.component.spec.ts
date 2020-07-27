@@ -16,4 +16,12 @@ describe('AppComponent', () => {
 		}).compileComponents();
 	}));
 
+	it('display the feed of all current moods', () => {
+		const fixture = TestBed.createComponent(AppComponent);
+
+		fixture.detectChanges();
+
+		const compiled = fixture.nativeElement;
+		expect(compiled.querySelectorAll('feed-all-current').length).toBe(1);
+	})
 });
