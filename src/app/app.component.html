@@ -1,4 +1,15 @@
-<div>
-	<ngx-emoji emoji=":smile:" size="32"></ngx-emoji>
-	<feed-all-current></feed-all-current>
-</div>
+<ng-container>
+	<header>
+		<a routerLink="/" routerLinkActive="active">Home</a>
+		<a routerLink="/register" routerLinkActive="active">Register</a>
+	</header>
+
+	<main>
+		<router-outlet></router-outlet>
+		<ngx-emoji emoji=":smile:" size="32"></ngx-emoji>
+		<feed-all-current></feed-all-current>
+	</main>
+
+	<footer>
+	</footer>
+</ng-container>
