@@ -42,4 +42,17 @@ describe('AppComponent', () => {
 		expect(index).toBeGreaterThan(-1);
 		expect(debugElements[index].nativeElement.textContent).toBe('Register');
 	})
+
+	it('displays a "Login" link', () => {
+		const fixture = TestBed.createComponent(AppComponent);
+
+		fixture.detectChanges();
+
+		const debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
+		const index = debugElements.findIndex(de => {
+			return de.properties['href'] === '/login';
+		});
+		expect(index).toBeGreaterThan(-1);
+		expect(debugElements[index].nativeElement.textContent).toBe('Login');
+	})
 });

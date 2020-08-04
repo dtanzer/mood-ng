@@ -10,6 +10,7 @@ import { DisplayCompactComponent } from './mood/display-compact/display-compact.
 import { AllCurrentComponent } from './feed/all-current/all-current.component';
 import { CurrentRegisterComponent } from './user/current-register/current-register.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { CurrentLoginComponent } from './user/current-login/current-login.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +18,8 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 		DisplayCompactComponent,
 		AllCurrentComponent,
 		CurrentRegisterComponent,
-		HomeScreenComponent
+		HomeScreenComponent,
+		CurrentLoginComponent
 	],
 	imports: [
 		BrowserModule,
