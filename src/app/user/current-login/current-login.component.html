@@ -8,7 +8,7 @@
 
 	<!--  || emailModel.pristine -->
 	<div [hidden]="em.valid && pw.valid" class="validation-errors">
-		<p *ngIf="em.errors?.required">Email is required</p>
+		<p data-validation="emailRequired" *ngIf="em.errors?.required">Email is required</p>
 		<p *ngIf="em.errors?.email">Email must be a valid email address</p>
 		<p *ngIf="pw.errors?.required">Password is required</p>
 	</div>

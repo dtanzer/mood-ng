@@ -94,20 +94,16 @@ describe('CurrentLoginComponent', () => {
 			component.loginForm?.controls['email'].setValue('');
 			fixture.detectChanges();
 
-			expect(fixture.debugElement.queryAll(By.css('p')).length).toBeGreaterThanOrEqual(1);
-			expect(fixture.debugElement.queryAll(By.css('p'))
-				.filter(p => p.nativeElement.textContent==='Email is required')
-				.length).toEqual(1);
+			expect(fixture.debugElement.query(By.css('p[data-validation="emailRequired"]'))).toBeTruthy();
+			expect(fixture.debugElement.query(By.css('p[data-validation="emailRequired"]')).nativeElement.textContent).toEqual('Email is required');
 		});
 	}));
-	it('does not a validation message about email length when not empty', async(() => {
+	it('does not have a validation message about email length when not empty', async(() => {
 		fixture.whenStable().then(() => {
 			component.loginForm?.controls['email'].setValue('user');
 			fixture.detectChanges();
 
-			expect(fixture.debugElement.queryAll(By.css('p'))
-				.filter(p => p.nativeElement.textContent==='Email is required')
-				.length).toEqual(0);
+			expect(fixture.debugElement.query(By.css('p[data-validation="emailRequired"]'))).toBeFalsy();
 		});
 	}));
 
@@ -122,7 +118,7 @@ describe('CurrentLoginComponent', () => {
 				.length).toEqual(1);
 		});
 	}));
-	it('does not a validation message about email validity when valid', async(() => {
+	it('does not have a validation message about email validity when valid', async(() => {
 		fixture.whenStable().then(() => {
 			component.loginForm?.controls['email'].setValue('user@host.com');
 			fixture.detectChanges();
@@ -144,7 +140,7 @@ describe('CurrentLoginComponent', () => {
 				.length).toEqual(1);
 		});
 	}));
-	it('does not a validation message about password length when not empty', async(() => {
+	it('does not have a validation message about password length when not empty', async(() => {
 		fixture.whenStable().then(() => {
 			component.loginForm?.controls['password'].setValue('password');
 			fixture.detectChanges();
