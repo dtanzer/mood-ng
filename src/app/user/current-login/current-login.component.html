@@ -1,6 +1,6 @@
-<form (ngSubmit)="onSubmit()">
-	<input name="username" type="text" required />
-	<input name="password" type="password" required />
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+	<input name="email" [(ngModel)]="email" type="text" required />
+	<input name="password" [(ngModel)]="password" type="password" required />
 	
 	<input name="submit" type="submit" value="Login" required />
 </form>
