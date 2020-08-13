@@ -59,4 +59,99 @@ describe('CurrentLoginComponent', () => {
 			verify(currentUserService);
 		});
 	}));
+
+	const invalidInputs: string[][] = [['', 'pass'], ['user', 'pass'], ['user@host.', 'pass'], ['user@host.com', '']]
+	invalidInputs.forEach(([email, password]) => it('has a disabled send button when the input is not valid', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue(email);
+			component.loginForm?.controls['password'].setValue(password);
+
+			fixture.detectChanges();
+
+			const submitButton = fixture.debugElement.query(By.css('input[name="submit"]'));
+			expect(submitButton.nativeElement.disabled).toBe(true);
+		});
+	})));
+
+	it('has a enabled send button when the input is valid', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue('user@host.com');
+			component.loginForm?.controls['password'].setValue('password');
+
+			fixture.detectChanges();
+
+			expect(component.loginForm?.valid).toBeTruthy();
+
+			fixture.whenStable().then(() => {
+				const submitButton = fixture.debugElement.query(By.css('input[name="submit"]'));
+				expect(submitButton.nativeElement.disabled).toBe(false);
+			});
+		});
+	}));
+
+	it('has a validation message when email is empty', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue('');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p')).length).toBeGreaterThanOrEqual(1);
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Email is required')
+				.length).toEqual(1);
+		});
+	}));
+	it('does not a validation message about email length when not empty', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue('user');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Email is required')
+				.length).toEqual(0);
+		});
+	}));
+
+	it('has a validation message when email invalid', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue('user@host.');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p')).length).toBeGreaterThanOrEqual(1);
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Email must be a valid email address')
+				.length).toEqual(1);
+		});
+	}));
+	it('does not a validation message about email validity when valid', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['email'].setValue('user@host.com');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Email must be a valid email address')
+				.length).toEqual(0);
+		});
+	}));
+
+	it('has a validation message when password is empty', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['password'].setValue('');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p')).length).toBeGreaterThanOrEqual(1);
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Password is required')
+				.length).toEqual(1);
+		});
+	}));
+	it('does not a validation message about password length when not empty', async(() => {
+		fixture.whenStable().then(() => {
+			component.loginForm?.controls['password'].setValue('password');
+			fixture.detectChanges();
+
+			expect(fixture.debugElement.queryAll(By.css('p'))
+				.filter(p => p.nativeElement.textContent==='Password is required')
+				.length).toEqual(0);
+		});
+	}));
 });
