@@ -1,3 +1,6 @@
 <app-hello defaultGreeting="Angular"></app-hello>
 
-<app-toolbar-button text="angular"></app-toolbar-button>
+<app-toolbar [showLabels]="showToolbarLabels">
+	<app-toolbar-button text="angular 1"></app-toolbar-button>
+	<app-toolbar-button text="angular 2"></app-toolbar-button>
+</app-toolbar>
