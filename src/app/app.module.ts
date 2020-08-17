@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
 import { ToolbarButtonComponent } from './toolbar-button/toolbar-button.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { OuterComponent } from './outer/outer.component';
+import { InnerComponent } from './inner/inner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloComponent,
     ToolbarButtonComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    OuterComponent,
+    InnerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,5 @@
+<div>Outer: {{additionalText}}</div>
+<app-inner 
+  [headline]="headline"
+  (onButtonClicked)="onInnerClickedOutput()"
+  [(buttonText)]="buttonText"></app-inner>
