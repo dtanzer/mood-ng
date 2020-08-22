@@ -1,6 +1,7 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
 	<input type="text" name="email" formControlName="email" />
 	<input type="password" name="password" formControlName="password"/>
+	<input type="password" name="confirmPassword" formControlName="confirmPassword"/>
 
 	<input type="submit" value="Register" [disabled]="!registerForm.valid" />
 </form>

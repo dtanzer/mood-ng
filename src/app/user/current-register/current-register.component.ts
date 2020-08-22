@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { CurrentUserService } from '../current-user.service';
 
 @Component({
@@ -10,11 +10,13 @@ import { CurrentUserService } from '../current-user.service';
 export class CurrentRegisterComponent implements OnInit {
   email = new FormControl('', [ Validators.required, Validators.email, ]);
   password = new FormControl('', [ Validators.required, ]);
+  confirmPassword = new FormControl('', [ Validators.required, ]);
 
   registerForm = new FormGroup({
     email: this.email,
     password: this.password,
-  })
+    confirmPassword: this.confirmPassword,
+  }, this.validateConfirmedPassword() )
 
   constructor(private currentUserService: CurrentUserService) { }
 
@@ -25,4 +27,15 @@ export class CurrentRegisterComponent implements OnInit {
     this.currentUserService.register(this.email.value, this.password.value);
   }
 
+  validateConfirmedPassword(): ValidatorFn {
+    return (group) => {
+      if(group.get('password') == null || group.get('confirmPassword') == null) {
+        return { passwordOrConfirmPasswordMissing: true, };
+      }
+      if(group.get('password')?.value === group.get('confirmPassword')?.value) {
+        return null;
+      }
+      return { confirmedPasswordMismatch: true, };
+    }
+  }
 }
