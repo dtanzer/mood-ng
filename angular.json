@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mood-ng"
+    }
+  },
+  "defaultProject": "mood-ng",
+  "cli": {
+    "analytics": "db52d7a8-665d-4929-a134-42d0fc2d3965"
+  }
 }
